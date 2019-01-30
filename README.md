@@ -60,3 +60,45 @@ For more accurate training, *Active Bias* emphasizes uncertain samples with high
    elif method_name == "ActiveBias":
        active_bias(gpu_id, input_reader, total_epochs, batch_size, lr_boundaries, lr_values, optimizer, noise_rate, warm_up, smoothness, log_dir=log_dir)
    ```
+   
+- Running commend
+   ```python
+    python main.py gpu_id method_name noise_rate log_dir
+   ```
+   This commend includes:
+   *(i)* CIFAR-10 automatical download, 
+   *(ii)* noise injection, and 
+   *(iii)* neural network training.
+   
+## 5. Tutorial 1: Comparison of learning curves on clean CIFAR-10 (without any noisy label)
+ - This tutorial shows the superiority of *Active Bias* on clean dataset. For a fixed training epochs (i.e., same number of iterations), *Active Bias* achieved lower test error compared with that of *Default*.
+ - We set *tau* to *0.0*.
+- Running script
+   ```shell
+   #!/bin/sh
+   main.py 0 Default 0.0 tutorial_1/Defulat
+   main.py 0 ActiveBias 0.0 tutorial_1/ActiveBias
+   ```
+- Running result
+<p align="center">
+<img src="figures/tutorial_1.png " width="650"> 
+</p>
+
+## 6. Tutorial 2: Comparison of the best test error with varying noise rates.
+ - This tutorial shows the robustness of *Active Bias* on noisy labels. For all noise rates, *Active Bias* achieved lower test error compared with that of *Default*.
+ - We used *tau* in {0.0, 0.1, 0.2, 0.3, 0.4} //from *light* noise to *heavy* noise
+ - Running script
+   ```shell
+   #!/bin/sh
+   for i in 0.0 0.1 0.2 0.3 0.4
+   do
+     main.py 0 Default $i tutorial_2/Defulat/$i
+     main.py 0 ActiveBias $i tutorial_2/ActiveBias/$i
+   done
+   ```
+- Running result
+<p align="center">
+<img src="figures/tutorial_2.png " width="400"> 
+</p>
+
+ 
