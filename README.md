@@ -23,44 +23,40 @@ For more accurate training, *Active Bias* emphasizes uncertain samples with high
 - Tensorflow-gpu 1.8.0 (pip install tensorflow-gpu==1.8.0)
 - Tensorpack (pip install tensorpack)
 
-
 ## 4. How to Run
 - Algorithm parameters
    ```
     -gpu_id: gpu number which you want to use.
-    -method_name: method in {Default, Co-teaching}.
+    -method_name: method in {Default, ActiveBias}.
     -noise_rate: the rate which you want to corrupt.
     -log_dir: log directory to save the training/test error.
    ```
    
 - Algorithm configuration
-   
    Data augmentation and distortion are not applied, and training paramters are set to:
    ```
-   Training epochs: 200
-   Batch size: 128
-   Learning rate: 0.1 (divided 5 at the approximately 50% and approximately 75% of the total number of epochs)
-   Dataset: CIFAR-10
-   ```
-   These configurations can be easily modified at main.py:
-   ```python
    # gradient optimizer type
    optimizer = 'momentum'
-   
+    
    # total number of training epcohs
    total_epochs = 200
-   
+    
    # batch size
    batch_size = 128
-   
+    
    # learning rates used for training, and the time to use each learning rate.
-   # e.g., lr=0.1 is used before 20,000 iterations, lr=0.02 is used before 30,000 iterations, lr=0.04 is used after 30,000 iterations
-   lr_values = [0.1, 0.02, 0.004]
    lr_boundaries = [40000, 60000]
-   
+   lr_values = [0.1, 0.02, 0.004]
+    
+   # warm-up epochs
+   warm_up = 15
+    
+   # smoothness constant
+   smoothness = 0.2
+    
    # training algorithms
    if method_name == "Default":
        default(gpu_id, input_reader, total_epochs, batch_size, lr_boundaries, lr_values, optimizer, noise_rate, log_dir=log_dir)
-   elif method_name == "Coteaching":
-       coteaching(gpu_id, input_reader, total_epochs, batch_size, lr_boundaries, lr_values, optimizer, noise_rate, log_dir=log_dir)
+   elif method_name == "ActiveBias":
+       active_bias(gpu_id, input_reader, total_epochs, batch_size, lr_boundaries, lr_values, optimizer, noise_rate, warm_up, smoothness, log_dir=log_dir)
    ```
