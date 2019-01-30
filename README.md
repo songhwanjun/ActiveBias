@@ -10,5 +10,6 @@ For more accurate training, *Active Bias* emphasizes uncertain samples with high
 
 <p align="center">
 <img src="figures/overview.png " width="650"> 
+
 This figure is borrowed from *Active Bias* paper.
 </p>
