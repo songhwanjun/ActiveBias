@@ -70,7 +70,7 @@ For more accurate training, *Active Bias* emphasizes uncertain samples with high
    *(ii)* noise injection, and 
    *(iii)* neural network training.
    
-## 5. Tutorial 1: Comparison of learning curves on clean CIFAR-10 (without any noisy label)
+## 5. Tutorial 1: Comparison of learning curves on clean CIFAR-10 (without any noise)
  - This tutorial shows the superiority of *Active Bias* on clean dataset. For a fixed training epochs (i.e., same number of iterations), *Active Bias* achieved lower test error compared with that of *Default*.
  - We set *tau* to *0.0*.
 - Running script
