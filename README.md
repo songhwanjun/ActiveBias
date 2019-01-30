@@ -6,8 +6,9 @@ Unofficial tensorflow implementation of [*Active Bias*](http://papers.nips.cc/pa
 1002–1012, 2017.
 
 ## 1. Summary
-For more accurate training, *Active Bias* emphasizes uncertain samples with high prediction variances. As shown in below figure
+For more accurate training, *Active Bias* emphasizes uncertain samples with high prediction variances. We 
 
 <p align="center">
 <img src="figures/overview.png " width="650"> 
+This figure is borrowed from *Active Bias* paper.
 </p>
