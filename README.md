@@ -6,7 +6,7 @@ Unofficial tensorflow implementation of [*Active Bias*](http://papers.nips.cc/pa
 1002–1012, 2017.
 
 ## 1. Summary
-For more accurate training, *Active Bias* emphasizes uncertain samples with high prediction variances. As shown in below figure borrowed from the [*original paper*](http://papers.nips.cc/paper/6701-active-bias-training-more-accurate-neural-networks-by-emphasizing-high-variance-samples), samples with low variances are too easy or too hard for training, therefore *Active Bias* focuses on uncertain samples with high variance. That is, the sample having highly variate prediction probability is preferred to construct next mini-batch.
+For more accurate training, *Active Bias* emphasizes uncertain samples with high prediction variances. As shown in below figure borrowed from the [*original paper*](http://papers.nips.cc/paper/6701-active-bias-training-more-accurate-neural-networks-by-emphasizing-high-variance-samples), samples with low variances are too easy or too hard for training, therefore *Active Bias* focuses on uncertain samples with high variance. That is, the sample having highly variate prediction history is preferred to construct next mini-batch. In detail, *Active Bias* maintains a history structure to store all softmax outputs (or probabilities) of true labels, and computes the variance of accumulated prababilities for each sample. Then, based on the variance, it reweights the backward loss of the samples in each mini-batch before the backward propagation.
 
 <p align="center">
 <img src="figures/overview.png " width="650">
