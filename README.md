@@ -34,7 +34,7 @@ For more accurate training, *Active Bias* emphasizes uncertain samples with high
    
 - Algorithm configuration
    Data augmentation and distortion are not applied, and training paramters are set to:
-   ```
+   ``` python
    # gradient optimizer type
    optimizer = 'momentum'
     
